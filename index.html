@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./iconfont/iconfont.css">
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div id="app">
+        <component :is="getTab"></component>
+        <div id="navbar">
+            <div class="active" v-for="item in list" @click="handleClick(item)">
+                <a href="#"><span class="iconfont icon-home"></span>
+                {{item.text}}
+                </a>
+            </div>
+            <!-- <div>
+                <a href="#"><span class="iconfont icon-sousuo-"></span>搜索</a>
+            </div>
+            <div>
+                <a href="#"><span class="iconfont icon-wode"></span>我的</a>
+            </div> -->
+        </div>
+    </div>
+</body>
+<script src="./vue.js"></script>
+<script>
+    Vue.component('custom-position', {
+        template: `
+        <div>
+        <div id="header">
+            拉勾网
+            </div>
+        <div id="login">
+            <p>10秒钟订制职位</p>
+            <div><a href="#">去登陆</a></div>
+        </div>
+        <ul id="list">
+            <li>
+                <div class="list-pic">
+                    <a href="#"><img src="./img/xiaomi.jpg" alt=""></a>
+                </div>
+                <div class="list-content">
+                    <h2>正大艾特</h2>
+                    <p>
+                        <span>中级java开发工程师[上海]</span>
+                        <span>13K-20K</span>
+                    </p>
+                    <p>今天 11:16</p>
+                </div>
+            </li>
+            <li>
+                <div class="list-pic">
+                    <a href="#"><img src="./img/xiaomi.jpg" alt=""></a>
+                </div>
+                <div class="list-content">
+                    <h2>正大艾特</h2>
+                    <p>
+                        <span>中级java开发工程师[上海]</span>
+                        <span>13K-20K</span>
+                    </p>
+                    <p>今天 11:16</p>
+                </div>
+            </li>
+            <li>
+                <div class="list-pic">
+                    <a href="#"><img src="./img/xiaomi.jpg" alt=""></a>
+                </div>
+                <div class="list-content">
+                    <h2>正大艾特</h2>
+                    <p>
+                        <span>中级java开发工程师[上海]</span>
+                        <span>13K-20K</span>
+                    </p>
+                    <p>今天 11:16</p>
+                </div>
+            </li>
+            <li>
+                <div class="list-pic">
+                    <a href="#"><img src="./img/xiaomi.jpg" alt=""></a>
+                </div>
+                <div class="list-content">
+                    <h2>正大艾特</h2>
+                    <p>
+                        <span>中级java开发工程师[上海]</span>
+                        <span>13K-20K</span>
+                    </p>
+                    <p>今天 11:16</p>
+                </div>
+            </li>
+            <li>
+                <div class="list-pic">
+                    <a href="#"><img src="./img/xiaomi.jpg" alt=""></a>
+                </div>
+                <div class="list-content">
+                    <h2>正大艾特</h2>
+                    <p>
+                        <span>中级java开发工程师[上海]</span>
+                        <span>13K-20K</span>
+                    </p>
+                    <p>今天 11:16</p>
+                </div>
+            </li>
+            <li>
+                <div class="list-pic">
+                    <a href="#"><img src="./img/xiaomi.jpg" alt=""></a>
+                </div>
+                <div class="list-content">
+                    <h2>正大艾特</h2>
+                    <p>
+                        <span>中级java开发工程师[上海]</span>
+                        <span>13K-20K</span>
+                    </p>
+                    <p>今天 11:16</p>
+                </div>
+            </li>
+            <li>
+                <div class="list-pic">
+                    <a href="#"><img src="./img/xiaomi.jpg" alt=""></a>
+                </div>
+                <div class="list-content">
+                    <h2>正大艾特</h2>
+                    <p>
+                        <span>中级java开发工程师[上海]</span>
+                        <span>13K-20K</span>
+                    </p>
+                    <p>今天 11:16</p>
+                </div>
+            </li>
+            <li>
+                <div class="list-pic">
+                    <a href="#"><img src="./img/xiaomi.jpg" alt=""></a>
+                </div>
+                <div class="list-content">
+                    <h2>正大艾特</h2>
+                    <p>
+                        <span>中级java开发工程师[上海]</span>
+                        <span>13K-20K</span>
+                    </p>
+                    <p>今天 11:16</p>
+                </div>
+            </li>
+        </ul>
+        <div id="more">
+            <a href="#">加载更多</a>
+        </div>
+        <div id="footer">
+            <p>&copy;2015 lagou.com,all right reserved</p>
+            <p>
+                <a href="#" class="active">移动版</a> · <a href="#">移动版</a> · <a href="#">移动版</a>
+            </p>
+        </div>
+        </div>
+      `
+    })
+
+    Vue.component('custom-search', {
+        template: `
+         <div>123</div>
+      `
+    })
+
+    Vue.component('custom-my', {
+        template: `
+         <div>456</div>
+      `
+    })
+
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            currentTab: 'position',
+            list: [
+                { id: 'position', text: "职位" },
+                { id: 'search', text: "搜索" },
+                { id: 'my', text: "我的" }
+            ]
+        },
+        computed: {
+            getTab() {
+                return 'custom-' + this.currentTab
+            }
+        },
+        methods: {
+            handleClick(item) {
+                this.currentTab = item.id
+            }
+        }
+    })
+</script>
+
+</html>
